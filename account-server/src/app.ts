@@ -11,11 +11,12 @@ app.post("/api/income", (req: any, res: any) => {
         res.sendStatus(400);
         return;
     }
+    const dataColumn = Object.keys(req.body.content);
     const inputValues = Object.values(req.body.content);
     connection.query(
-        "insert into income \
-        (payedMoney, category, memo, payYear, payMonth, payDay) \
-        values (?) ",
+        `insert into income \
+        (${dataColumn.join(", ")}) \
+        values (?) `,
         [inputValues],
         (err: any, rows: any) => {
             if (err) {
@@ -142,12 +143,13 @@ app.post("/api/expend", (req: any, res: any) => {
         res.sendStatus(400);
         return;
     }
+    const dataColumn = Object.keys(req.body.content);
     const inputValues = Object.values(req.body.content);
     connection.query(
-        "insert into expend \
-        (payedMoney, payment, category, memo, payYear, payMonth, payDay) \
-        values (?)",
-        [inputValues],
+        `insert into income \
+        (${dataColumn.join(", ")}) \
+        values (?) `,
+        [dataColumn, inputValues],
         (err: any, rows: any) => {
             if (err) {
                 throw err;
@@ -241,7 +243,7 @@ app.get("/api/expend/payyear/:payyear", (req: any, res: any) => {
     );
 });
 
-app.get("/api/paymonth/:paymonth", (req: any, res: any) => {
+app.get("/api/expend/paymonth/:paymonth", (req: any, res: any) => {
     connection.query(
         "select * from expend where payMonth = ? ",
         [req.params.paymonth],

@@ -1,7 +1,7 @@
 import "./css/reset.css";
 import "./css/navigation.css";
-
-console.log("지출");
+import "./css/inputBox.css";
+import "./css/button.css";
 
 interface PostOption {
     method: string;

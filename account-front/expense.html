@@ -27,34 +27,37 @@
             <section class="contents">
                 <div class="expense-area">
                     <div class="user-input-area">
+                        <div class="input-title">
+                            <p>지출을 입력해주세요</p>
+                        </div>
                         <div class="input-item">
-                            <span class="input-label">지출방법</span>
-                            <div>
-                                <input
+                            <p class="input-label">지출방법</p>
+                            <label class="box-radio-input"
+                                ><input
                                     type="radio"
                                     name="payment"
                                     value="현금"
                                     checked="checked"
-                                />
-                                현금
-                                <input
+                                /><span>현금</span></label
+                            >
+                            <label class="box-radio-input"
+                                ><input
                                     type="radio"
                                     name="payment"
                                     value="카드"
-                                />
-                                카드
-                            </div>
+                                /><span>카드</span></label
+                            >
                         </div>
                         <div class="input-item">
-                            <span class="input-label">지출금액</span>
+                            <p class="input-label">지출금액</p>
                             <input type="number" class="payedMoney" />
                         </div>
                         <div class="input-item">
-                            <span class="input-label">날짜</span>
+                            <p class="input-label">날짜</p>
                             <input type="date" />
                         </div>
                         <div class="input-item">
-                            <span class="input-label">카테고리</span>
+                            <p class="input-label">카테고리</p>
                             <select class="category">
                                 <option value="식비" selected>식비</option>
                                 <option value="교통비">교통비</option>
@@ -65,7 +68,7 @@
                             </select>
                         </div>
                         <div class="input-item">
-                            <span class="input-label">메모</span>
+                            <p class="input-label">메모</p>
                             <textarea class="payedMemo"></textarea>
                         </div>
                         <button class="submitBtn">입력</button>

@@ -1,5 +1,7 @@
 import "./css/reset.css";
 import "./css/navigation.css";
+import "./css/inputBox.css";
+import "./css/button.css";
 
 interface PostOption {
     method: string;

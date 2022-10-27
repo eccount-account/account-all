@@ -2,6 +2,12 @@ import "./css/reset.css";
 import "./css/navigation.css";
 import { fetchData } from "./api";
 
+const IncomeAllEl = document.querySelector(".IncomeAll") as HTMLSelectElement;
+
+function allIncomDate() {
+    console.log("콘솔");
+}
+
 async function dataGet() {
     const selectIncomeAll = await fetchData("/api/income/");
     console.log("수입 전체 데이터 가져오기", selectIncomeAll);
@@ -34,5 +40,4 @@ async function dataGet() {
 
 dataGet();
 
-//선택해서 수입 한개 가져오기
-//선택해서 지출 한개 가져오기
+IncomeAllEl?.addEventListener("click", allIncomDate);

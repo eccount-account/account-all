@@ -1,13 +1,7 @@
 "use strict";
 const express = require("express");
 const app = express();
-const mysql = require("mysql");
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "1q2w3e4r",
-    database: "accountbook",
-});
+const connection = require("./model");
 connection.connect();
 app.use(express.json());
 app.post("/api/account/income", (req, res) => {

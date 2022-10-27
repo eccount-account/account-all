@@ -1,7 +1,7 @@
 "use strict";
 const express = require("express");
 const app = express();
-const connection = require("./model");
+const connection = require("./dir/model.js");
 connection.connect();
 app.use(express.json());
 app.post("/api/account/income", (req, res) => {

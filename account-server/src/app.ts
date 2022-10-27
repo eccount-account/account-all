@@ -1,12 +1,12 @@
 const express = require("express");
 const app = express();
-const connection = require("./model");
+const connection = require("./dir/model.js");
 
 connection.connect();
 
 app.use(express.json());
 
-app.post("/api/account/income", (req: any, res: any) => {
+app.post("/api/income", (req: any, res: any) => {
     if (!req.body?.content) {
         res.sendStatus(400);
         return;
@@ -26,7 +26,7 @@ app.post("/api/account/income", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/income", (req: any, res: any) => {
+app.get("/api/income", (req: any, res: any) => {
     console.log(res);
     connection.query("select * from income ", (err: any, rows: any) => {
         if (err) {
@@ -36,7 +36,7 @@ app.get("/api/account/income", (req: any, res: any) => {
     });
 });
 
-app.delete("/api/account/income", (req: any, res: any) => {
+app.delete("/api/income", (req: any, res: any) => {
     connection.query("delete * from income ", (err: any, rows: any) => {
         if (err) {
             throw err;
@@ -45,7 +45,7 @@ app.delete("/api/account/income", (req: any, res: any) => {
     });
 });
 
-app.put("/api/account/income/id/:id", (req: any, res: any) => {
+app.put("/api/income/id/:id", (req: any, res: any) => {
     if (!req.body?.content) {
         res.sendStatus(400);
         return;
@@ -68,7 +68,7 @@ app.put("/api/account/income/id/:id", (req: any, res: any) => {
     );
 });
 
-app.delete("/api/account/income/id/:id", (req: any, res: any) => {
+app.delete("/api/income/id/:id", (req: any, res: any) => {
     connection.query(
         "delete * from income where id = ?",
         [req.params.id],
@@ -81,7 +81,7 @@ app.delete("/api/account/income/id/:id", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/income/id/:id", (req: any, res: any) => {
+app.get("/api/income/id/:id", (req: any, res: any) => {
     connection.query(
         "select * from income where id = ? ",
         [req.params.id],
@@ -94,10 +94,10 @@ app.get("/api/account/income/id/:id", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/income/payYear/:payYear", (req: any, res: any) => {
+app.get("/api/income/payyear/:payyear", (req: any, res: any) => {
     connection.query(
         "select * from income where payYear = ? ",
-        [req.params.payYear],
+        [req.params.payyear],
         (err: any, rows: any) => {
             if (err) {
                 throw err;
@@ -107,8 +107,8 @@ app.get("/api/account/income/payYear/:payYear", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/income/payMonth/:payMonth", (req: any, res: any) => {
-    if (!req.body?.payMonth) {
+app.get("/api/income/paymonth/:paymonth", (req: any, res: any) => {
+    if (!req.body?.paymonth) {
         res.sendStatus(400);
         return;
     }
@@ -124,10 +124,10 @@ app.get("/api/account/income/payMonth/:payMonth", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/income/payDay/:payDay", (req: any, res: any) => {
+app.get("/api/income/payday/:payday", (req: any, res: any) => {
     connection.query(
         "select * from income where payDay = ? ",
-        [req.params.payDay],
+        [req.params.payday],
         (err: any, rows: any) => {
             if (err) {
                 throw err;
@@ -137,7 +137,7 @@ app.get("/api/account/income/payDay/:payDay", (req: any, res: any) => {
     );
 });
 
-app.post("/api/account/expend", (req: any, res: any) => {
+app.post("/api/expend", (req: any, res: any) => {
     if (!req.body?.content) {
         res.sendStatus(400);
         return;
@@ -157,7 +157,7 @@ app.post("/api/account/expend", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/expend", (req: any, res: any) => {
+app.get("/api/expend", (req: any, res: any) => {
     connection.query("select * from expend ", (err: any, rows: any) => {
         if (err) {
             throw err;
@@ -166,7 +166,7 @@ app.get("/api/account/expend", (req: any, res: any) => {
     });
 });
 
-app.delete("/api/account/expend/id/:id", (req: any, res: any) => {
+app.delete("/api/expend/id/:id", (req: any, res: any) => {
     connection.query(
         "delete * from expend where id = ?",
         [req.params.id],
@@ -179,7 +179,7 @@ app.delete("/api/account/expend/id/:id", (req: any, res: any) => {
     );
 });
 
-app.put("/api/account/expend/id/:id", (req: any, res: any) => {
+app.put("/api/expend/id/:id", (req: any, res: any) => {
     if (!req.body?.content) {
         res.sendStatus(400);
         return;
@@ -202,7 +202,7 @@ app.put("/api/account/expend/id/:id", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/expend/id/:id", (req: any, res: any) => {
+app.get("/api/expend/id/:id", (req: any, res: any) => {
     connection.query(
         "select * from expend where id = ?",
         [req.params.id],
@@ -215,7 +215,7 @@ app.get("/api/account/expend/id/:id", (req: any, res: any) => {
     );
 });
 
-app.delete("/api/account/expend/id/:id", (req: any, res: any) => {
+app.delete("/api/expend/id/:id", (req: any, res: any) => {
     connection.query(
         "delete * from expend where id = ? ",
         [req.params.id],
@@ -228,10 +228,10 @@ app.delete("/api/account/expend/id/:id", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/expend/payYear/:payYear", (req: any, res: any) => {
+app.get("/api/expend/payyear/:payyear", (req: any, res: any) => {
     connection.query(
         "select * from expend where payYear = ? ",
-        [req.params.payYear],
+        [req.params.payyear],
         (err: any, rows: any) => {
             if (err) {
                 throw err;
@@ -241,10 +241,10 @@ app.get("/api/account/expend/payYear/:payYear", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/payMonth/:payMonth", (req: any, res: any) => {
+app.get("/api/paymonth/:paymonth", (req: any, res: any) => {
     connection.query(
         "select * from expend where payMonth = ? ",
-        [req.params.payMonth],
+        [req.params.paymonth],
         (err: any, rows: any) => {
             if (err) {
                 throw err;
@@ -254,10 +254,10 @@ app.get("/api/account/payMonth/:payMonth", (req: any, res: any) => {
     );
 });
 
-app.get("/api/account/expend/payDay/:payDay", (req: any, res: any) => {
+app.get("/api/expend/payday/:payday", (req: any, res: any) => {
     connection.query(
         "select * from expend where payDay = ? ",
-        [req.params.payDay],
+        [req.params.payday],
         (err: any, rows: any) => {
             if (err) {
                 throw err;

@@ -7,7 +7,7 @@ interface PostOption {
     body: string;
 }
 
-async function saveIncome(
+async function saveInputData(
     payedMoney: number,
     category: string,
     memo: string,
@@ -15,7 +15,7 @@ async function saveIncome(
     payMonth: number,
     payDay: number
 ) {
-    const incomeData = JSON.stringify({
+    const bodyData = JSON.stringify({
         content: {
             payedMoney: payedMoney,
             category: category,
@@ -26,25 +26,21 @@ async function saveIncome(
         },
     });
 
-    console.log("넘어옴11", incomeData);
-
     const requstOption: PostOption = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: incomeData,
+        body: bodyData,
     };
 
-    const response = await fetch("/api/account/income", requstOption);
+    const response = await fetch("/api/income", requstOption);
     console.log(response);
-    //const data = await response.json();
-    //console.log(data);
 }
 
 const submitBtnEl = document.querySelector(".submitBtn");
 
-function submitIncomeData(): any {
+function submitInputData(): any {
     const payedCategoryEl = document.querySelector(
         ".payedCategory"
     ) as HTMLSelectElement;
@@ -66,7 +62,7 @@ function submitIncomeData(): any {
 
     const [year, month, day] = payedDateEl.value.split("-");
 
-    saveIncome(
+    saveInputData(
         Number(payedMoneyEl.value),
         payedCategoryEl.options[payedCategoryEl.selectedIndex].value,
         memoEl.value,
@@ -76,4 +72,4 @@ function submitIncomeData(): any {
     );
 }
 
-submitBtnEl?.addEventListener("click", submitIncomeData);
+submitBtnEl?.addEventListener("click", submitInputData);

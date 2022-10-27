@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>지출</title>
-    <script defer src="vendors.780ce6cafe9d9cff3c46.bundle.js"></script><script defer src="expense.421a1846cb17f62717fd.bundle.js"></script></head>
+    <script defer src="vendors.2ecef7cdb5ee13970a36.bundle.js"></script><script defer src="expense.afffafe6a75c07a765cb.bundle.js"></script></head>
     <body>
         <div id="root">
             <header class="navigation">
@@ -26,28 +26,28 @@
             </header>
             <section class="contents">
                 <div class="expense-area">
-                    <form action="" method="post" class="user-input-area">
+                    <div class="user-input-area">
                         <div class="input-item">
                             <span class="input-label">지출방법</span>
                             <div>
                                 <input
                                     type="radio"
-                                    name="payWay"
+                                    name="payment"
+                                    value="현금"
                                     checked="checked"
-                                    value="cash"
                                 />
                                 현금
                                 <input
                                     type="radio"
-                                    name="payWay"
-                                    value="card"
+                                    name="payment"
+                                    value="카드"
                                 />
                                 카드
                             </div>
                         </div>
                         <div class="input-item">
                             <span class="input-label">지출금액</span>
-                            <input type="number" />
+                            <input type="number" class="payedMoney" />
                         </div>
                         <div class="input-item">
                             <span class="input-label">날짜</span>
@@ -55,25 +55,21 @@
                         </div>
                         <div class="input-item">
                             <span class="input-label">카테고리</span>
-                            <select>
-                                <option value="food" selected>식비</option>
-                                <option value="traffic">교통비</option>
-                                <option value="living">주거비</option>
-                                <option value="entertainment">유흥비</option>
-                                <option value="save">저축</option>
-                                <option value="others">기타</option>
+                            <select class="category">
+                                <option value="식비" selected>식비</option>
+                                <option value="교통비">교통비</option>
+                                <option value="주거비">주거비</option>
+                                <option value="유흥비">유흥비</option>
+                                <option value="저축">저축</option>
+                                <option value="기타">기타</option>
                             </select>
                         </div>
                         <div class="input-item">
                             <span class="input-label">메모</span>
-                            <textarea></textarea>
+                            <textarea class="payedMemo"></textarea>
                         </div>
-                        <input
-                            type="submit"
-                            value="submit"
-                            class="submit-btn"
-                        />
-                    </form>
+                        <button class="submitBtn">입력</button>
+                    </div>
                 </div>
             </section>
         </div>

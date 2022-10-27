@@ -20,6 +20,7 @@ module.exports = {
         income: "./src/income.ts",
         statistical: "./src/statistical.ts",
         expense: "./src/expense.ts",
+        api: "./src/api.ts",
     },
     output: {
         // 출력

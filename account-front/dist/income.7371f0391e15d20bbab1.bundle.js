@@ -150,7 +150,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ 21:
+/***/ 20:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -167,17 +167,43 @@ var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _argume
 };
 
 
-const statisticalItemsEL = document.querySelector(".statistical-items");
-function fetchDataIncomeData() {
+function saveInputData(payedMoney, category, memo, payYear, payMonth, payDay) {
     return __awaiter(this, void 0, void 0, function* () {
-        const response3 = yield fetch("/api/account/income/id/1", {
-            method: "GET",
+        const bodyData = JSON.stringify({
+            content: {
+                payedMoney: payedMoney,
+                category: category,
+                memo: memo,
+                payYear: payYear,
+                payMonth: payMonth,
+                payDay: payDay,
+            },
         });
-        const data = yield response3.json();
-        console.log(data);
+        const requstOption = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: bodyData,
+        };
+        const response = yield fetch("/api/income", requstOption);
+        console.log(response);
     });
 }
-fetchDataIncomeData();
+const submitBtnEl = document.querySelector(".submitBtn");
+function submitInputData() {
+    const payedCategoryEl = document.querySelector(".payedCategory");
+    const payedMoneyEl = document.querySelector(".payedMoney");
+    const payedDateEl = document.querySelector("input[type='date']");
+    const memoEl = document.querySelector(".payedMemo");
+    console.log("방법", payedCategoryEl.options[payedCategoryEl.selectedIndex].value);
+    console.log("수입", payedMoneyEl.value);
+    console.log("데이트", payedDateEl.value);
+    console.log("메모", memoEl.value);
+    const [year, month, day] = payedDateEl.value.split("-");
+    saveInputData(Number(payedMoneyEl.value), payedCategoryEl.options[payedCategoryEl.selectedIndex].value, memoEl.value, Number(year), Number(month), Number(day));
+}
+submitBtnEl === null || submitBtnEl === void 0 ? void 0 : submitBtnEl.addEventListener("click", submitInputData);
 
 
 /***/ })
@@ -316,7 +342,7 @@ fetchDataIncomeData();
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			4: 0
+/******/ 			3: 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -371,9 +397,9 @@ fetchDataIncomeData();
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [5], () => (__webpack_require__(21)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [6], () => (__webpack_require__(20)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=statistical.4bcbee13eac780cc0245.bundle.js.map
+//# sourceMappingURL=income.7371f0391e15d20bbab1.bundle.js.map

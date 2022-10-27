@@ -154,11 +154,99 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fetchData": () => (/* binding */ fetchData),
+/* harmony export */   "saveData": () => (/* binding */ saveData)
+/* harmony export */ });
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+function fetchData(url) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(url);
+        const dataList = yield response.json();
+        if (!dataList) {
+            return dataList;
+        }
+        return dataList;
+    });
+}
+//클라이언트에서 서버로 데이터 전송
+function saveData(url, bodyData) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const requstOption = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: bodyData,
+        };
+        yield fetch(url, requstOption);
+    });
+}
+
+
+/***/ }),
+
+/***/ 21:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_reset_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4);
 /* harmony import */ var _css_navigation_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
+/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(22);
+var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 
 
-console.log("zzz");
+
+function dataGet() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const selectIncomeAll = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)("/api/income/");
+        console.log("수입 전체 데이터 가져오기", selectIncomeAll);
+        const selectIncomOne = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)("/api/income/id/1");
+        console.log("수입 특정 아이디 한개 데이터 가져오기", selectIncomOne);
+        const year = 2022;
+        const selectIncomYear = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)(`/api/income/payyear/${year}`);
+        console.log("수입 특정 년 가져오기", selectIncomYear);
+        const month = 10;
+        const selectIncomMonth = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)(`/api/income/paymonth/${month}`);
+        console.log("수입 특정 월 가져오기", selectIncomMonth);
+        const day = 19;
+        const selectIncomDay = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)(`/api/income/payday/${day}`);
+        console.log("수입 특정 일 가져오기", selectIncomDay);
+        const selectExpendAll = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)("/api/expend");
+        console.log("수출 전체 데이터 가져오기", selectExpendAll);
+        const exId = 1;
+        const selectExpendOne = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)(`/api/expend/id/${exId}`);
+        console.log("수출 특정 아이디 한개 데이터 가져오기", selectExpendOne);
+        const exYear = 2022;
+        const selectExpendYear = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)(`/api/expend/payyear/${exYear}`);
+        console.log("수출 특정 년 가져오기", selectExpendYear);
+        const exMonth = 12;
+        const selectExpendMonth = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)(`/api/paymonth/${exMonth}`);
+        console.log("수출 특정 월 가져오기", selectExpendMonth);
+        const exDay = 25;
+        const selectExpendDay = yield (0,_api__WEBPACK_IMPORTED_MODULE_2__.fetchData)(`/api/expend/payday/${exDay}`);
+        console.log("수출 특정 월 가져오기", selectExpendDay);
+    });
+}
+dataGet();
+//선택해서 수입 한개 가져오기
+//선택해서 지출 한개 가져오기
 
 
 /***/ })
@@ -297,7 +385,7 @@ console.log("zzz");
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			1: 0
+/******/ 			5: 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -352,9 +440,9 @@ console.log("zzz");
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [5], () => (__webpack_require__(22)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [6], () => (__webpack_require__(21)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=expense.421a1846cb17f62717fd.bundle.js.map
+//# sourceMappingURL=statistical.416a2239f1d80efdeba5.bundle.js.map

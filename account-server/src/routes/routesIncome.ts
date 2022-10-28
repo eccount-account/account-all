@@ -1,24 +1,25 @@
-const getIncomeRoutingExpress = require("express");
-const incomeRouter = getIncomeRoutingExpress.Router();
-const incomeController = require("../controllers/incomeController.js");
+// const getIncomeRoutingExpress = require("express");
+// const incomeRouter = getIncomeRoutingExpress.Router();
+// const incomeController = require("../controllers/incomeController.js");
 
-incomeRouter.post('/', incomeController.api.insertData);
+import express from "express";
+import { api as incomeController } from "../controllers/incomeController.js";
+export const incomeRouter = express.Router();
 
-incomeRouter.get('/', incomeController.api.getAllData);
+incomeRouter.post('/', incomeController.insertData);
 
-incomeRouter.delete('/', incomeController.api.deleteAllData);
+incomeRouter.get('/', incomeController.getAllData);
 
-incomeRouter.put("/id/:id", incomeController.api.modifyDataById);
+incomeRouter.delete('/', incomeController.deleteAllData);
 
-incomeRouter.delete("/id/:id", incomeController.api.deleteDataById);
+incomeRouter.put("/id/:id", incomeController.modifyDataById);
 
-incomeRouter.get("/id/:id", incomeController.api.getDataById);
+incomeRouter.delete("/id/:id", incomeController.deleteDataById);
 
-incomeRouter.get("/payyear/:payyear", incomeController.api.getYearData);
+incomeRouter.get("/id/:id", incomeController.getDataById);
 
-incomeRouter.get("/paymonth/:paymonth", incomeController.api.getMonthData);
+incomeRouter.get("/payyear/:payyear", incomeController.getYearData);
 
-incomeRouter.get("/payday/:payday", incomeController.api.getDayData);
+incomeRouter.get("/paymonth/:paymonth", incomeController.getMonthData);
 
-
-module.exports = incomeRouter;
+incomeRouter.get("/payday/:payday", incomeController.getDayData);

@@ -1,5 +1,7 @@
 "use strict";
+// export const modelConnection = require("../config/db.js");
 const modelConnection = require("../config/db.js");
+module.exports = modelConnection;
 // class Model {
 //     connection: any;
 //     constructor() {
@@ -16,4 +18,3 @@ const modelConnection = require("../config/db.js");
 //     }
 // }
 // module.exports = Model;
-module.exports = modelConnection;

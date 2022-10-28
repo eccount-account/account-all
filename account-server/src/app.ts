@@ -1,18 +1,22 @@
-const express = require("express");
+import express from "express";
+import { incomeRouter as income } from "./routes/routesIncome.js";
+import { expendRouter as expend } from "./routes/routesExpend.js"; 
+// const express = require("express");
 const app = express();
 
 // const connection = require("./config/db.js");// 20221027
 // const connection = require('./models/model.js'); 20221028
 // connection.connect();
 
-const income = require("./routes/routesIncome.js");
-const expend = require("./routes/routesExpend.js");
+// const income = require("./routes/routesIncome.js");
+// const expend = require("./routes/routesExpend.js");
 
 app.use(express.json());
 app.use('/api/income', income);
 app.use('/api/expend', expend);
 
 const { createProxyMiddleware } = require("http-proxy-middleware");
+
 
 app.get('/', (req: any, res: any) => {
     return res.sendStatus(200);

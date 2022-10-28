@@ -1,24 +1,22 @@
 
-const getExpendRoutingExpress = require("express");
-const expendRouter = getExpendRoutingExpress.Router();
-const expendController = require("../controllers/expendController.js");
+// const getExpendRoutingExpress = require("express");
+import express from "express";
+import { api as expendController } from "../controllers/expendController.js";
+export const expendRouter = express.Router();
+// const expendController = require("../controllers/expendController.js");
 
-expendRouter.post('/', expendController.api.insertData);
+expendRouter.post('/', expendController.insertData);
 
-expendRouter.get('/', expendController.api.getAllData); // 삭제?
+expendRouter.get('/', expendController.getAllData); // 삭제?
 
-expendRouter.delete("/id/:id", expendController.api.deleteDataById);
+expendRouter.delete("/id/:id", expendController.deleteDataById);
 
-expendRouter.put("/id/:id", expendController.api.modifyDataById);
+expendRouter.put("/id/:id", expendController.modifyDataById);
 
-expendRouter.get("/id/:id", expendController.api.getDataById);
+expendRouter.get("/id/:id", expendController.getDataById);
 
-expendRouter.get("/payyear/:payyear", expendController.api.getYearData); //
+expendRouter.get("/payyear/:payyear", expendController.getYearData); //
 
-expendRouter.get("/paymonth/:paymonth", expendController.api.getMonthData); //
+expendRouter.get("/paymonth/:paymonth", expendController.getMonthData); //
 
-expendRouter.get("/payday/:payday", expendController.api.getDayData); //
-
-
-
-module.exports = expendRouter;
+expendRouter.get("/payday/:payday", expendController.getDayData); //

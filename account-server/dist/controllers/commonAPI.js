@@ -1,5 +1,8 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Controller = void 0;
 const getModel = require("../models/model.js");
+// import { modelConnection } from "../models/model.js";
 const connection = getModel;
 class Controller {
     constructor(table) {
@@ -28,7 +31,7 @@ class Controller {
         });
     }
     getAllData(req, res) {
-        console.log("get");
+        console.log(this.table);
         connection.query(`select * from ${this.table} `, (err, rows) => {
             if (err) {
                 throw err;
@@ -109,4 +112,4 @@ class Controller {
         });
     }
 }
-module.exports = Controller;
+exports.Controller = Controller;

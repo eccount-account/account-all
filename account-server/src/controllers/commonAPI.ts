@@ -1,7 +1,9 @@
 const getModel = require("../models/model.js");
+// import { modelConnection } from "../models/model.js";
+
 const connection = getModel;
 
-class Controller {
+export class Controller {
     table: string;
     connection: any;
     constructor(table: string) {
@@ -37,7 +39,7 @@ class Controller {
     }
 
     getAllData (req: any, res: any)  {
-        console.log("get");
+        console.log(this.table);
         connection.query(
             `select * from ${this.table} `, 
             (err: any, rows: any) => {
@@ -150,5 +152,3 @@ class Controller {
     }
     
 }
-
-module.exports = Controller;

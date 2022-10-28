@@ -1,26 +1,14 @@
 import express from "express";
+import { createProxyMiddleware } from "http-proxy-middleware";
 import { incomeRouter as income } from "./routes/routesIncome.js";
 import { expendRouter as expend } from "./routes/routesExpend.js"; 
-// const express = require("express");
+import { monthTotalRouter as monthTotal } from "./routes/routesMonthTotal.js"; 
 const app = express();
-
-// const connection = require("./config/db.js");// 20221027
-// const connection = require('./models/model.js'); 20221028
-// connection.connect();
-
-// const income = require("./routes/routesIncome.js");
-// const expend = require("./routes/routesExpend.js");
 
 app.use(express.json());
 app.use('/api/income', income);
 app.use('/api/expend', expend);
-
-const { createProxyMiddleware } = require("http-proxy-middleware");
-
-
-app.get('/', (req: any, res: any) => {
-    return res.sendStatus(200);
-});
+app.use('/api/monthtotal', monthTotal);
 
 app.use(
     createProxyMiddleware("/", {

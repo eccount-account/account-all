@@ -1,7 +1,5 @@
-const getModel = require("../models/model.js");
-// import { modelConnection } from "../models/model.js";
-
-const connection = getModel;
+const connection = require("../models/model.js");
+// import { Model as dbModel } from "../models/model.js";
 
 export class Controller {
     table: string;
@@ -19,9 +17,10 @@ export class Controller {
         const dataColumn = Object.keys(req.body.content);
         const inputValues = Object.values(req.body.content);
         // try {
-        //     getModel.insertToDB(table, dataColumn, inputValues);
+        //     dbModel.insertToDB(this.table, dataColumn, inputValues);
+        //     res.sendStatus(400);
         // } catch {
-
+        //     res.sendStatus(200);
         // }
         
         connection.query(
@@ -39,7 +38,9 @@ export class Controller {
     }
 
     getAllData (req: any, res: any)  {
-        console.log(this.table);
+        // try { 
+        //     getModel.
+        // }
         connection.query(
             `select * from ${this.table} `, 
             (err: any, rows: any) => {
@@ -84,7 +85,7 @@ export class Controller {
 
     deleteDataById (req: any, res: any) {
         connection.query(
-            `delete * from ${this.table} where id = ? `,
+            `delete from ${this.table} where id = ? `,
             [req.params.id],
             (err: any, rows: any) => {
                 if (err) {
@@ -108,18 +109,19 @@ export class Controller {
         );
     }
 
-    getYearData (req: any, res: any) {
-        connection.query(
-            `select * from ${this.table} where payYear = ? `,
-            [req.params.payyear],
-            (err: any, rows: any) => {
-                if (err) {
-                    throw err;
-                }
-                res.send(rows);
-            }
-        );
-    }
+    // getYearData (req: any, res: any) {
+    //     connection.query(
+    //         `select * from ${this.table} where payYear = ? `,
+    //         [req.params.payyear],
+    //         (err: any, rows: any) => {
+    //             if (err) {
+    //                 throw err;
+    //             }
+    //             res.send(rows);
+    //         }
+    //     );
+    // }
+
 
     getMonthData (req: any, res: any) {
         if (!req.body?.payMonth) {
@@ -138,17 +140,17 @@ export class Controller {
         );
     }
 
-    getDayData (req: any, res: any) {
-        connection.query(
-            `select * from ${this.table} where payDay = ? `,
-            [req.params.payday],
-            (err: any, rows: any) => {
-                if (err) {
-                    throw err;
-                }
-                res.send(rows);
-            }
-        );
-    }
+    // getDayData (req: any, res: any) {
+    //     connection.query(
+    //         `select * from ${this.table} where payDay = ? `,
+    //         [req.params.payday],
+    //         (err: any, rows: any) => {
+    //             if (err) {
+    //                 throw err;
+    //             }
+    //             res.send(rows);
+    //         }
+    //     );
+    // }
     
 }

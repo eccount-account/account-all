@@ -8,18 +8,18 @@ const modelInfo = {
     database: "accountbook",
 };
 
-// export const connectionCreated = mysql.createConnection({
-//     host: modelInfo.host,
-//     user: modelInfo.user,
-//     password: modelInfo.password,
-//     database: modelInfo.database,
-// });
-
-const connectionCreated = mysql.createConnection({
+export const connectionCreated = mysql.createConnection({
     host: modelInfo.host,
     user: modelInfo.user,
     password: modelInfo.password,
     database: modelInfo.database,
 });
 
-module.exports = connectionCreated;
+// const connectionCreated = mysql.createConnection({
+//     host: modelInfo.host,
+//     user: modelInfo.user,
+//     password: modelInfo.password,
+//     database: modelInfo.database,
+// });
+
+// module.exports = connectionCreated;

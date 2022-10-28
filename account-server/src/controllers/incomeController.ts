@@ -1,6 +1,6 @@
 import { Controller } from "./commonAPI.js";
-const incomeGetApi = new Controller("income");
 
+const incomeGetApi = new Controller("income");
 
 export const api = {
     insertData: (req: any, res: any) => { incomeGetApi.insertData(req, res) },

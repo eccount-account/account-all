@@ -1,6 +1,6 @@
 import { Controller } from "./commonAPI.js";
-const expendGetApi = new Controller("expend");
 
+const expendGetApi = new Controller("expend");
 
 export const api = {
     insertData: (req: any, res: any) => { expendGetApi.insertData(req, res) },

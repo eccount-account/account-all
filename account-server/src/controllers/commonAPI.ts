@@ -1,19 +1,29 @@
-class api {
+const getModel = require("../models/model.js");
+const connection = getModel;
+
+class Controller {
     table: string;
+    connection: any;
     constructor(table: string) {
-        this.table= table;
+        this.connection = connection;
+        this.table = table;
     }
 
-    insertData (req: any, res: any, table : string) {
-        table = this.table;
+    insertData (req: any, res: any) {
         if (!req.body?.content) {
             res.sendStatus(400);
             return;
         }
         const dataColumn = Object.keys(req.body.content);
         const inputValues = Object.values(req.body.content);
+        // try {
+        //     getModel.insertToDB(table, dataColumn, inputValues);
+        // } catch {
+
+        // }
+        
         connection.query(
-            `insert into ${table} \
+            `insert into ${this.table} \
             (${dataColumn.join(", ")}) \
             values (?) `,
             [inputValues],
@@ -25,29 +35,29 @@ class api {
             }
         );
     }
-        
-    getAllData (req: any, res: any, table: string) {
-        table = this.table;
-        connection.query(`select * from ${table} `, (err: any, rows: any) => {
+
+    getAllData (req: any, res: any)  {
+        console.log("get");
+        connection.query(
+            `select * from ${this.table} `, 
+            (err: any, rows: any) => {
+                if (err) {
+                    throw err;
+                }
+                res.send(rows);
+        });
+    }
+
+    deleteAllData (req: any, res: any) {
+        connection.query(`delete * from ${this.table} `, (err: any, rows: any) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-        
-    deleteAllData (req: any, res: any, table: string) {
-        table = this.table;
-        connection.query(`delete * from ${table} `, (err: any, rows: any) => {
-            if (err) {
-                throw err;
-            }
-            res.send(rows);
-        });
-    }
-        
-    modifyDataById (req: any, res: any, table: string) {
-        table = this.table;
+
+    modifyDataById (req: any, res: any) {
         if (!req.body?.content) {
             res.sendStatus(400);
             return;
@@ -59,7 +69,7 @@ class api {
         }
         updateValues = updateArray.join(" , ");
         connection.query(
-            `update ${table} set ${updateValues} where id = ?`,
+            `update ${this.table} set ${updateValues} where id = ?`,
             [req.params.id],
             (err: any, rows: any) => {
                 if (err) {
@@ -69,11 +79,10 @@ class api {
             }
         );
     }
-        
-    deleteDataById (req: any, res: any, table: string) {
-        table = this.table;
+
+    deleteDataById (req: any, res: any) {
         connection.query(
-            `delete * from ${table} where id = ? `,
+            `delete * from ${this.table} where id = ? `,
             [req.params.id],
             (err: any, rows: any) => {
                 if (err) {
@@ -83,11 +92,10 @@ class api {
             }
         );
     }
-        
-    getDataById (req: any, res: any, table: string) {
-        table = this.table;
+
+    getDataById (req: any, res: any) {
         connection.query(
-            `select * from ${table} where id = ? `,
+            `select * from ${this.table} where id = ? `,
             [req.params.id],
             (err: any, rows: any) => {
                 if (err) {
@@ -97,11 +105,10 @@ class api {
             }
         );
     }
-        
-    getYearData (req: any, res: any, table: string) {
-        table = this.table;
+
+    getYearData (req: any, res: any) {
         connection.query(
-            `select * from ${table} where payYear = ? `,
+            `select * from ${this.table} where payYear = ? `,
             [req.params.payyear],
             (err: any, rows: any) => {
                 if (err) {
@@ -111,15 +118,14 @@ class api {
             }
         );
     }
-        
-    getMonthData (req: any, res: any, table: string) {
-        table = this.table;
+
+    getMonthData (req: any, res: any) {
         if (!req.body?.payMonth) {
             res.sendStatus(400);
             return;
         }
         connection.query(
-            `select * from ${table} where payMonth = ? `,
+            `select * from ${this.table} where payMonth = ? `,
             [req.params.paymonth],
             (err: any, rows: any) => {
                 if (err) {
@@ -129,11 +135,10 @@ class api {
             }
         );
     }
-        
-    getDayData (req: any, res: any, table: string) {
-        table = this.table;
+
+    getDayData (req: any, res: any) {
         connection.query(
-            `select * from ${table} where payDay = ? `,
+            `select * from ${this.table} where payDay = ? `,
             [req.params.payday],
             (err: any, rows: any) => {
                 if (err) {
@@ -146,4 +151,4 @@ class api {
     
 }
 
-module.exports = api;
+module.exports = Controller;

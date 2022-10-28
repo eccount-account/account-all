@@ -1,23 +1,23 @@
 
-const expendRouter = require("./routesRoot");
-const expendController = require("../controllers/expendController");
-const expendUrl = "/api/expend";
+const getExpendRoutingExpress = require("express");
+const expendRouter = getExpendRoutingExpress.Router();
+const expendController = require("../controllers/expendController.js");
 
-expendRouter.post(expendUrl, expendController.api.insertData);
+expendRouter.post('/', expendController.api.insertData);
 
-expendRouter.get(expendUrl, expendController.api.getAllData);
+expendRouter.get('/', expendController.api.getAllData); // 삭제?
 
-expendRouter.delete(`${expendUrl}/id/:id`, expendController.api.deleteDataById);
+expendRouter.delete("/id/:id", expendController.api.deleteDataById);
 
-expendRouter.put(`${expendUrl}/id/:id`, expendController.api.modifyDataById);
+expendRouter.put("/id/:id", expendController.api.modifyDataById);
 
-expendRouter.get(`${expendUrl}/id/:id`, expendController.api.getDataById);
+expendRouter.get("/id/:id", expendController.api.getDataById);
 
-expendRouter.get(`${expendUrl}/payyear/:payyear`, expendController.api.getYearData);
+expendRouter.get("/payyear/:payyear", expendController.api.getYearData); //
 
-expendRouter.get(`${expendUrl}/paymonth/:paymonth`, expendController.api.getMonthData);
+expendRouter.get("/paymonth/:paymonth", expendController.api.getMonthData); //
 
-expendRouter.get(`${expendUrl}/payday/:payday`, expendController.api.getDayData);
+expendRouter.get("/payday/:payday", expendController.api.getDayData); //
 
 
 

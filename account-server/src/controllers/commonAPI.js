@@ -1,18 +1,24 @@
 "use strict";
-class api {
+const getModel = require("../models/model.js");
+const connection = getModel;
+class Controller {
     constructor(table) {
+        this.connection = connection;
         this.table = table;
     }
-    insertData(req, res, table) {
+    insertData(req, res) {
         var _a;
-        table = this.table;
         if (!((_a = req.body) === null || _a === void 0 ? void 0 : _a.content)) {
             res.sendStatus(400);
             return;
         }
         const dataColumn = Object.keys(req.body.content);
         const inputValues = Object.values(req.body.content);
-        connection.query(`insert into ${table} \
+        // try {
+        //     getModel.insertToDB(table, dataColumn, inputValues);
+        // } catch {
+        // }
+        connection.query(`insert into ${this.table} \
             (${dataColumn.join(", ")}) \
             values (?) `, [inputValues], (err, rows) => {
             if (err) {
@@ -21,27 +27,25 @@ class api {
             res.sendStatus(200);
         });
     }
-    getAllData(req, res, table) {
-        table = this.table;
-        connection.query(`select * from ${table} `, (err, rows) => {
+    getAllData(req, res) {
+        console.log("get");
+        connection.query(`select * from ${this.table} `, (err, rows) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-    deleteAllData(req, res, table) {
-        table = this.table;
-        connection.query(`delete * from ${table} `, (err, rows) => {
+    deleteAllData(req, res) {
+        connection.query(`delete * from ${this.table} `, (err, rows) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-    modifyDataById(req, res, table) {
+    modifyDataById(req, res) {
         var _a;
-        table = this.table;
         if (!((_a = req.body) === null || _a === void 0 ? void 0 : _a.content)) {
             res.sendStatus(400);
             return;
@@ -52,57 +56,52 @@ class api {
             updateArray.push(`${key} = '${req.body.content[key]}' `);
         }
         updateValues = updateArray.join(" , ");
-        connection.query(`update ${table} set ${updateValues} where id = ?`, [req.params.id], (err, rows) => {
+        connection.query(`update ${this.table} set ${updateValues} where id = ?`, [req.params.id], (err, rows) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-    deleteDataById(req, res, table) {
-        table = this.table;
-        connection.query(`delete * from ${table} where id = ? `, [req.params.id], (err, rows) => {
+    deleteDataById(req, res) {
+        connection.query(`delete * from ${this.table} where id = ? `, [req.params.id], (err, rows) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-    getDataById(req, res, table) {
-        table = this.table;
-        connection.query(`select * from ${table} where id = ? `, [req.params.id], (err, rows) => {
+    getDataById(req, res) {
+        connection.query(`select * from ${this.table} where id = ? `, [req.params.id], (err, rows) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-    getYearData(req, res, table) {
-        table = this.table;
-        connection.query(`select * from ${table} where payYear = ? `, [req.params.payyear], (err, rows) => {
+    getYearData(req, res) {
+        connection.query(`select * from ${this.table} where payYear = ? `, [req.params.payyear], (err, rows) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-    getMonthData(req, res, table) {
+    getMonthData(req, res) {
         var _a;
-        table = this.table;
         if (!((_a = req.body) === null || _a === void 0 ? void 0 : _a.payMonth)) {
             res.sendStatus(400);
             return;
         }
-        connection.query(`select * from ${table} where payMonth = ? `, [req.params.paymonth], (err, rows) => {
+        connection.query(`select * from ${this.table} where payMonth = ? `, [req.params.paymonth], (err, rows) => {
             if (err) {
                 throw err;
             }
             res.send(rows);
         });
     }
-    getDayData(req, res, table) {
-        table = this.table;
-        connection.query(`select * from ${table} where payDay = ? `, [req.params.payday], (err, rows) => {
+    getDayData(req, res) {
+        connection.query(`select * from ${this.table} where payDay = ? `, [req.params.payday], (err, rows) => {
             if (err) {
                 throw err;
             }
@@ -110,4 +109,4 @@ class api {
         });
     }
 }
-module.exports = api;
+module.exports = Controller;

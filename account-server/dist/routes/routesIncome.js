@@ -1,7 +1,4 @@
 "use strict";
-// const getIncomeRoutingExpress = require("express");
-// const incomeRouter = getIncomeRoutingExpress.Router();
-// const incomeController = require("../controllers/incomeController.js");
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -16,6 +13,6 @@ exports.incomeRouter.delete('/', incomeController_js_1.api.deleteAllData);
 exports.incomeRouter.put("/id/:id", incomeController_js_1.api.modifyDataById);
 exports.incomeRouter.delete("/id/:id", incomeController_js_1.api.deleteDataById);
 exports.incomeRouter.get("/id/:id", incomeController_js_1.api.getDataById);
-exports.incomeRouter.get("/payyear/:payyear", incomeController_js_1.api.getYearData);
+// incomeRouter.get("/payyear/:payyear", incomeController.getYearData);
 exports.incomeRouter.get("/paymonth/:paymonth", incomeController_js_1.api.getMonthData);
-exports.incomeRouter.get("/payday/:payday", incomeController_js_1.api.getDayData);
+// incomeRouter.get("/payday/:payday", incomeController.getDayData);

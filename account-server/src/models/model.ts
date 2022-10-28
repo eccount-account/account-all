@@ -1,13 +1,8 @@
-// export const connectionCreated = require("../config/db.js");
-// const modelConnection = require("../config/db.js");
-// module.exports = modelConnection;
-// module.exports = Model;
 import { connectionCreated } from "../config/db.js";
 
 export class Model {
     connection: any;
     constructor() {
-        // this.connection = modelConnection;
         this.connection = connectionCreated;
     }
 

@@ -1,4 +1,3 @@
-// const mysql = require("mysql");
 import mysql from "mysql";
 
 const modelInfo = {
@@ -14,12 +13,3 @@ export const connectionCreated = mysql.createConnection({
     password: modelInfo.password,
     database: modelInfo.database,
 });
-
-// const connectionCreated = mysql.createConnection({
-//     host: modelInfo.host,
-//     user: modelInfo.user,
-//     password: modelInfo.password,
-//     database: modelInfo.database,
-// });
-
-// module.exports = connectionCreated;

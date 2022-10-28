@@ -21,9 +21,6 @@ class Controller {
         catch (err) {
             res.sendStatus(400);
         }
-        finally {
-            return;
-        }
     }
     getAllData(req, res) {
         try {

@@ -1,14 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Model = void 0;
-// export const connectionCreated = require("../config/db.js");
-// const modelConnection = require("../config/db.js");
-// module.exports = modelConnection;
-// module.exports = Model;
 const db_js_1 = require("../config/db.js");
 class Model {
     constructor() {
-        // this.connection = modelConnection;
         this.connection = db_js_1.connectionCreated;
     }
     insertToDB(table, dataColumn, inputValues, res) {

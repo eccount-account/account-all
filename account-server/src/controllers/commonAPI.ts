@@ -1,6 +1,5 @@
 import { Model as DBModel } from "../models/model.js";
 
-
 export class Controller {
     table: string;
     model: DBModel;

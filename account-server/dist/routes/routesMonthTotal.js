@@ -8,4 +8,4 @@ const express_1 = __importDefault(require("express"));
 const monthTotalController_js_1 = require("../controllers/monthTotalController.js");
 exports.monthTotalRouter = express_1.default.Router();
 const monthController = new monthTotalController_js_1.monthTotalController();
-exports.monthTotalRouter.get('/', monthController.getAllData);
+exports.monthTotalRouter.post('/', monthController.getAllData);

@@ -3,4 +3,4 @@ import { monthTotalController } from "../controllers/monthTotalController.js";
 export const monthTotalRouter = express.Router();
 
 const monthController = new monthTotalController();
-monthTotalRouter.get('/', monthController.getAllData);
+monthTotalRouter.post('/', monthController.getAllData);
